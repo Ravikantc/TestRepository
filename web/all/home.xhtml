@@ -1,0 +1,263 @@
+<!DOCTYPE html PUBLIC
+    "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<!-- (c) Copyright 2015 SailPoint Technologies, Inc., All Rights Reserved. -->
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:sp="http://sailpoint.com/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+<body>
+
+<ui:composition template="/ngAppPage.xhtml">
+
+  <ui:define name="title">#{msgs.home_title}</ui:define>
+
+  <ui:define name="headerItems">
+
+    <sp:style serveOffset="#{base.requestContextPath}/css/sailpoint/web">
+      <src>home.css</src>
+    </sp:style>
+
+    <sp:style serveOffset="#{base.requestContextPath}/ui/css">
+      <src>ng-sortable.css</src>
+      <src>plugin.css?#{debug.revision}</src>
+    </sp:style>
+    
+    <ui:include src="ui/scriptData.xhtml" />
+
+    <sp:script serveOffset="#{base.requestContextPath}/ui/js">
+      <src>lib/easypiechart/jquery.easy-pie-chart.js?#{debug.revision}</src>
+      <src>lib/ng-sortable/ng-sortable.js?#{debug.revision}</src>
+      <src>home/widget/workitems/AbstractWorkItemsWidgetDirectiveCtrl.js</src>
+      <src>approval/ApprovalModule.js?#{debug.revision}</src>
+      <src>approval/Approval.js?#{debug.revision}</src>
+      <src>approval/ApprovalItem.js?#{debug.revision}</src>
+      <src>common/directive/GaugeDirective.js?#{debug.revision}</src>
+      <src>common/error/ErrorHandler.js?#{debug.revision}</src>
+      <src>common/model/PolicyViolation.js?#{debug.revision}</src>
+      <src>common/model/IdentitySummary.js?#{debug.revision}</src>
+      <src>common/model/RoleEntitlementResultDTO.js?#{debug.revision}</src>
+      <src>common/model/RoleEntitlementItem.js?#{debug.revision}</src>
+      <src>common/model/ListResultDTO.js?#{debug.revision}</src>
+      <src>common/requestItem/RequestItemModule.js</src>
+      <src>flow/FlowModule.js?#{debug.revision}</src>
+      <src>flow/Flow.js?#{debug.revision}</src>
+      <src>flow/FlowMasterService.js?#{debug.revision}</src>
+      <src>workitem/WorkItemModule.js?#{debug.revision}</src>
+      <src>workitem/WorkItemAbstractModule.js?#{debug.revision}</src>
+      <src>workitem/AbstractWorkItemDirectiveCtrl.js?#{debug.revision}</src>
+      <src>workitem/WorkItemService.js?#{debug.revision}</src>
+      <src>workitem/WorkItemDialogCtrl.js?#{debug.revision}</src>
+      <src>workitem/WorkItemResult.js?#{debug.revision}</src>
+      <src>workitem/model/WorkItem.js?#{debug.revision}</src>
+      <src>workitem/violationReview/ViolationReviewModule.js?#{debug.revision}</src>
+      <src>workitem/violationReview/model/ViolationReviewWorkItem.js?#{debug.revision}</src>
+      <src>workitem/violationReview/model/ViolationReviewRequestedItem.js?#{debug.revision}</src>
+
+      <src>home/desktop/DesktopHomeAppModule.js?#{debug.revision}</src>
+      <src>home/desktop/DesktopHomeModule.js?#{debug.revision}</src>
+      <src>home/desktop/DesktopHomeAddItemsDialogCtrl.js?#{debug.revision}</src>
+      <src>home/desktop/DesktopHomeCtrl.js?#{debug.revision}</src>
+      <src>home/desktop/DesktopHomePage.js?#{debug.revision}</src>
+      <src>home/desktop/DesktopHomeService.js?#{debug.revision}</src>
+      <src>home/desktop/DesktopHomeEditItemsDirective.js?#{debug.revision}</src>
+      <src>home/desktop/QuickLinkCardClassicCtrl.js?#{debug.revision}</src>
+      <src>home/widget/WidgetModule.js?#{debug.revision}</src>
+      <src>home/widget/Widget.js?#{debug.revision}</src>
+      <src>home/widget/WidgetDataService.js?#{debug.revision}</src>
+      <src>home/widget/WidgetDirective.js?#{debug.revision}</src>
+      <src>home/widget/WidgetService.js?#{debug.revision}</src>
+      <src>home/widget/certifications/CertificationsWidgetModule.js?#{debug.revision}</src>
+      <src>home/widget/certifications/AbstractCertificationsWidgetCtrl.js?#{debug.revision}</src>
+      <src>home/widget/certifications/CertificationCampaignsWidgetDirective.js?#{debug.revision}</src>
+      <src>home/widget/certifications/MyAccessReviewsWidgetDirective.js?#{debug.revision}</src>
+      <src>home/widget/identities/IdentitiesWidgetModule.js?#{debug.revision}</src>
+      <src>home/widget/identities/DirectReport.js?#{debug.revision}</src>
+      <src>home/widget/identities/DirectReportService.js?#{debug.revision}</src>
+      <src>home/widget/identities/DirectReportsWidgetDirective.js?#{debug.revision}</src>
+      <src>home/widget/identities/DirectReportsWidgetDirectiveCtrl.js?#{debug.revision}</src>
+      <src>home/widget/model/WidgetModelModule.js?#{debug.version}</src>
+      <src>home/widget/model/CertificationWidgetData.js?#{debug.revision}</src>
+      <src>home/widget/model/MyAccessReviewsWidgetData.js?#{debug.revision}</src>
+      <src>home/widget/workitems/WorkItemsWidgetModule.js?#{debug.revision}</src>
+      <src>home/widget/workitems/ApprovalsWidgetDirective.js?#{debug.revision}</src>
+      <src>home/widget/workitems/FormsWidgetDirective.js?#{debug.revision}</src>
+      <src>home/widget/workitems/TargetOrDescriptionFilter.js?#{debug.revision}</src>
+      <src>home/widget/workitems/ViolationsWidgetDirective.js?#{debug.revision}</src>
+      <src>home/widget/risk/RiskWidgetModule.js?#{debug.revision}</src>
+      <src>home/widget/risk/TopFiveRisksWidgetDirective.js?#{debug.revision}</src>
+      <src>home/widget/risk/TopFiveRisksWidgetDirectiveCtrl.js?#{debug.revision}</src>
+      <src>home/widget/risk/RiskService.js?#{debug.revision}</src>
+      <src>home/widget/risk/RiskyThing.js?#{debug.revision}</src>
+      <src>quickLink/card/QuickLinkCardModule.js?#{debug.revision}</src>
+      <src>quickLink/card/QuickLinkCard.js?#{debug.revision}</src>
+      <src>quickLink/card/QuickLinkCardService.js?#{debug.revision}</src>
+    </sp:script>
+
+    <script type="text/javascript" defer="defer">
+      helpKey = 'HOME';
+    </script>
+  </ui:define>
+
+  <ui:define name="body">
+    <f:view>
+      <div ng-app="sailpoint.home.desktop.app" ng-controller="DesktopHomeCtrl as homeCtrl" class="quickLinkCardContainer">
+        <sp-register-config sp-config-key="uiApprovalsWidgetColumns"
+                            sp-column-configs="#{sp:getColumnConfigJSON('uiApprovalsWidgetColumns')}" />        
+        <sp-register-config sp-config-key="uiFormsWidgetColumns"
+                            sp-column-configs="#{sp:getColumnConfigJSON('uiFormsWidgetColumns')}" />        
+        <sp-register-config sp-config-key="uiViolationsWidgetColumns"
+                            sp-column-configs="#{sp:getColumnConfigJSON('uiViolationsWidgetColumns')}" />
+        <sp-refresh-warning sp-ignore-warning="!homeCtrl.isEditing()"
+                            sp-warning-message="{{ 'ui_home_page_lose_changes_warning' | spTranslate }}"/>
+        <h:messages infoClass="formInfo" warnClass="formWarn" errorClass="formError" />
+
+        <div class="container-fluid" ng-cloak="" sp-loading-mask="homeCtrl.getHomePage()">
+
+          <!-- HOME PAGE HEADER -->
+          <div class="row m-b-sm m-t-sm home-header sp-page-header">
+            <div class="col-xs-4 ">
+              <h1 class="m-t-xs ">
+                <span ng-show="!homeCtrl.isEditing()">
+                  <i role="presentation" class="fa fa-home"></i>
+                  {{ 'ui_home' | spTranslate }}
+                </span>
+                <span ng-show="homeCtrl.isEditing()">
+                  <i role="presentation" class="fa fa-pencil"></i>
+                  {{ 'ui_edit_home' | spTranslate }}
+                </span>
+              </h1>
+            </div>
+            <div class="col-xs-4 text-center">
+              <div ng-show="homeCtrl.isEditing()">
+                <span class="m-r-xs">{{ 'ui_home_page_content_top_row' | spTranslate }}</span>
+                <div class="btn-group" role="group">
+                  <button ng-repeat="(type, typeString) in homeCtrl.getContentTypes()" 
+                          ng-click="homeCtrl.setTopContent(typeString)" type="button" role="button" 
+                          class="btn btn-sm btn-white" ng-class="{ 'active btn-info' : homeCtrl.isTopContent(typeString) } ">
+                    {{ homeCtrl.getContentTypeLabel(typeString) | spTranslate }}
+                    <span class="sr-only" ng-if="homeCtrl.isTopContent(typeString)">{{ 'ui_selected' | spTranslate }}</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="col-xs-4">
+              <div class="pull-right">
+                <span ng-show="!homeCtrl.isEditing()">
+                  <button role="button" type="button" ng-click="homeCtrl.startEdit()" class="btn btn-white btn-sm">
+                    <i role="presentation" class="fa fa-pencil m-r-xs"></i>
+                    {{ 'ui_edit' | spTranslate }}
+                  </button>  
+                </span>
+
+                <span ng-show="homeCtrl.isEditing()">
+                  <button role="button" type="button" ng-click="homeCtrl.cancelEdit()"
+                          ng-disabled="homeCtrl.isSaving()" 
+                          class="btn btn-white btn-sm m-r-xs">
+                    {{ 'ui_cancel' | spTranslate }}
+                  </button>
+
+                  <button role="button" type="button" ng-click="homeCtrl.saveEdit()"
+                          ng-disabled="homeCtrl.isSaving()" 
+                          class="btn btn-info btn-sm m-r-xs">
+                    {{ 'ui_save' | spTranslate }}
+                  </button>
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <!-- NO CONTENT MESSAGE -->
+          <div class="col-xs-12 text-center" ng-show="!homeCtrl.isEditing() &amp;&amp; !homeCtrl.hasItems()">
+            <h3 class="text-muted">{{ 'ui_no_home_page_content' | spTranslate }}</h3>
+          </div>
+
+          <!-- NOT EDITING -->
+          <div ng-show="!homeCtrl.isEditing() &amp;&amp; homeCtrl.hasItems()">
+            <div ng-repeat="content in homeCtrl.getContentOrder()" >
+              <!-- QUICK LINK CARDS -->
+              <div ng-if="homeCtrl.isQuickLinkContent(content)">
+                <div class="row quicklink-cards" ng-controller="QuickLinkCardClassicCtrl as quickLinkClassicCtrl">
+                  <div ng-repeat-start="card in homeCtrl.getQuickLinkCards()"
+                       class="col-lg-2 col-md-3 col-sm-6 quicklink-card">
+                    <div class="quicklink-card-link {{ card.cssClass }}">
+                      <a href="" ng-click="quickLinkClassicCtrl.chooseQuickLink(card)" title="{{card.label | spTranslate}}"
+                         tabindex="0">
+                        <div class="panel" ng-class="{'task-card': !card.text}">
+                          <div class="panel-body">
+                            <span class="card-arrow-icon"><i role="presentation" class="fa fa-chevron-right"></i></span>
+                            <div class="card-title">
+                              {{ card.label | spTranslate }}
+                            </div>
+                            <div ng-if="card.text" class="card-number">
+                              {{ card.text }}
+                            </div>
+                            <span ng-if="card.ariaLabel" class="sr-only">
+                              {{ card.ariaLabel | spTranslate }}
+                            </span>
+                          </div>
+                        </div>
+                      </a>
+                    </div>
+                  </div>
+                  <!-- Clearfix divs -->
+                  <div ng-if="($index+1) % 6 === 0" class="clearfix visible-lg-block"></div>
+                  <div ng-if="($index+1) % 4 === 0" class="clearfix visible-md-block"></div>
+                  <div ng-if="($index+1) % 2 === 0" class="clearfix visible-sm-block"></div>
+                  <div ng-repeat-end=""></div>
+                </div>
+              </div>
+              <!-- WIDGETS -->
+              <div ng-if="homeCtrl.isWidgetContent(content)">
+                <div class="row home-widgets">
+                  <div ng-repeat-start="widget in homeCtrl.getWidgets()"
+                       class="col-lg-6 col-md-6">
+                    <sp-widget sp-widget="widget" />
+                  </div>
+                  <!-- Clearfix divs -->
+                  <div ng-if="($index+1) % 3 === 0" class="clearfix visible-lg-block"></div>
+                  <div ng-if="($index+1) % 2 === 0" class="clearfix visible-md-block"></div>
+                  <div ng-repeat-end=""></div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+          
+          <!-- EDITING -->
+          <div ng-if="homeCtrl.isEditing()">
+            <div ng-repeat="content in homeCtrl.getContentOrder()" class="row m-t">
+              <div class="col-xs-12">
+                <h4 class="home-header">{{ homeCtrl.getContentTypeLabel(content) | spTranslate }}</h4>
+                <!-- QUICK LINK CARDS -->
+                <div ng-if="homeCtrl.isQuickLinkContent(content)">
+                  <sp-desktop-home-edit-items ng-model="homeCtrl.homePageScratchPad.quickLinkCards"
+                                              sp-add-func="homeCtrl.addCard"
+                                              sp-remove-func="homeCtrl.removeCard"
+                                              sp-label-property="label"
+                                              sp-add-label="ui_add_card"
+                                              />
+                </div>
+                <!-- WIDGETS -->
+                <div ng-if="homeCtrl.isWidgetContent(content)">
+                  <sp-desktop-home-edit-items ng-model="homeCtrl.homePageScratchPad.widgets"
+                                              sp-add-func="homeCtrl.addWidget"
+                                              sp-remove-func="homeCtrl.removeWidget"
+                                              sp-label-property="title"
+                                              sp-add-label="ui_add_widget"
+                                              />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </f:view>
+  </ui:define>
+
+</ui:composition>
+</body>
+</html>

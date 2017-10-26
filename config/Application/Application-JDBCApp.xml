@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE Application PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<Application connector="sailpoint.connector.JDBCConnector" featuresString="DISCOVER_SCHEMA, PROVISIONING, SYNC_PROVISIONING, DIRECT_PERMISSIONS, ADDITIONAL_ACCOUNT_REQUEST" icon="databaseIcon" name="JDBCApp" profileClass="" type="JDBC">
+  <AccountCorrelationConfig>
+    <Reference class="sailpoint.object.CorrelationConfig" name="RMS"/>
+  </AccountCorrelationConfig>
+  <Attributes>
+    <Map>
+      <entry key="SQL" value="select * from V_USER_ROLES_UI order by grantee,GRANTED_ROLE asc"/>
+      <entry key="acctAggregationEnd">
+        <value>
+          <Date>1478514127888</Date>
+        </value>
+      </entry>
+      <entry key="acctAggregationStart">
+        <value>
+          <Date>1478513700947</Date>
+        </value>
+      </entry>
+      <entry key="afterProvisioningRule" value="WSI RMS After Provisioning Rule"/>
+      <entry key="aggregationMode">
+        <value>
+          <Boolean/>
+        </value>
+      </entry>
+      <entry key="approvalMode" value="Manager"/>
+      <entry key="compositeDefinition"/>
+      <entry key="creationEmailTemplates">
+        <value>
+          <List>
+            <String>WSI RMS Notification</String>
+          </List>
+        </value>
+      </entry>
+      <entry key="deltaTable"/>
+      <entry key="disableOrderingCheck" value="true"/>
+      <entry key="driverClass" value="oracle.jdbc.driver.OracleDriver"/>
+      <entry key="getDeltaSQL"/>
+      <entry key="indexColumns">
+        <value>
+          <List>
+            <String>GRANTEE</String>
+          </List>
+        </value>
+      </entry>
+      <entry key="isPermissionEnabled">
+        <value>
+          <Boolean/>
+        </value>
+      </entry>
+      <entry key="jdbcProvisionRule" value="WSI JDBC Provision RMS UI"/>
+      <entry key="mergeColumns">
+        <value>
+          <List>
+            <String>GRANTED_ROLE</String>
+          </List>
+        </value>
+      </entry>
+      <entry key="mergeRows">
+        <value>
+          <Boolean>true</Boolean>
+        </value>
+      </entry>
+      <entry key="nativeChangeDetectionAttributeScope" value="entitlements"/>
+      <entry key="nativeChangeDetectionAttributes"/>
+      <entry key="nativeChangeDetectionEnabled">
+        <value>
+          <Boolean/>
+        </value>
+      </entry>
+      <entry key="nativeChangeDetectionOperations"/>
+      <entry key="partitionMode">
+        <value>
+          <Boolean/>
+        </value>
+      </entry>
+      <entry key="partitionStatements"/>
+      <entry key="password" value="1:j00QdvVjejsOjXdaCgKg5g=="/>
+      <entry key="provisionRule" value="globalRule"/>
+      <entry key="provisioningMaxRetries" value="1"/>
+      <entry key="secondaryReview">
+        <value>
+          <Boolean/>
+        </value>
+      </entry>
+      <entry key="sysDescriptions">
+        <value>
+          <Map>
+            <entry key="en_US"/>
+          </Map>
+        </value>
+      </entry>
+      <entry key="templateApplication" value="JDBC Template"/>
+      <entry key="url" value="jdbc:oracle:thin:@RMSDBPRDRK1P:1521:rmsprd"/>
+      <entry key="useExecuteQuery">
+        <value>
+          <Boolean/>
+        </value>
+      </entry>
+      <entry key="user" value="IDM_USER"/>
+    </Map>
+  </Attributes>
+  <Owner>
+    <Reference class="sailpoint.object.Identity" name="spadmin"/>
+  </Owner>
+  <PasswordPolicies>
+    <PasswordPolicyHolder>
+      <PolicyRef>
+        <Reference class="sailpoint.object.PasswordPolicy" name="RMS"/>
+      </PolicyRef>
+    </PasswordPolicyHolder>
+  </PasswordPolicies>
+  <ProvisioningForms>
+    <Form name="RMS" objectType="account" type="Create">
+      <Field displayName="User ID" filterString="" name="UserID" type="string">
+        <Script>
+          <Source>return identity.getName();</Source>
+        </Script>
+      </Field>
+    </Form>
+  </ProvisioningForms>
+  <Remediators>
+    <Reference class="sailpoint.object.Identity" name="spadmin"/>
+  </Remediators>
+  <Schemas>
+    <Schema displayAttribute="GRANTEE" identityAttribute="GRANTEE" instanceAttribute="" nativeObjectType="account" objectType="account" permissionsRemediationModificationType="None">
+      <AttributeDefinition name="GRANTEE" type="string">
+        <Description/>
+      </AttributeDefinition>
+      <AttributeDefinition entitlement="true" managed="true" multi="true" name="GRANTED_ROLE" type="string">
+        <Description/>
+      </AttributeDefinition>
+    </Schema>
+  </Schemas>
+  <ApplicationScorecard/>
+</Application>

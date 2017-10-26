@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE DynamicScope PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<DynamicScope name="Manager">
+  <ApplicationRequestControl>
+    <Reference class="sailpoint.object.Rule" name="Objects in Requestor's Authorized Scopes"/>
+  </ApplicationRequestControl>
+  <ManagedAttributeRequestControl>
+    <Reference class="sailpoint.object.Rule" name="All Objects"/>
+  </ManagedAttributeRequestControl>
+    <PopulationRequestAuthority>
+    <MatchConfig customControl="employeeStatus.contains(&quot;A&quot;)||employeeStatus.contains(&quot;G&quot;)||employeeStatus.contains(&quot;L&quot;)||employeeStatus.contains(&quot;P&quot;)" enableCustomControl="true" enableSubordinateControl="true" matchAll="true" maxHierarchyDepth="5" subordinateOption="directOrIndirect"/>
+  </PopulationRequestAuthority>
+  <RoleRequestControl>
+    <Reference class="sailpoint.object.Rule" id="4028c49a5376525e0153765504ea03cf" name="WSI Filter Birthright Roles Rule"/>
+  </RoleRequestControl>
+      <Selector>
+      <IdentitySelector>
+        <MatchExpression>
+          <MatchTerm name='managerStatus' value='true' />
+        </MatchExpression>
+      </IdentitySelector>
+    </Selector>
+</DynamicScope>
+  
+  
+  
+ 

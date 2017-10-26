@@ -1,0 +1,140 @@
+/* IIQ Custom
+This is used for any custom styles or style overrides used to rebrand IIQ
+user pages. */
+/*****************************************************************
+ Login Page Settings
+******************************************************************/
+#logobar { /* Use your own image file and filename)
+ background: url("../images/ACME.png") no-repeat scroll 20px 8px #7f0013;
+}
+#loginBody { /* This example removes logo from background and sets to solid color. */
+ background-color: #FF0000;
+ background-image: none;
+}
+.loginHeader
+ { color: #7f0013; }
+.version
+ { color: #7f0013;
+}
+/****************************************************************
+ Main Pages Background and Header
+****************************************************************/
+body, body.x-border-layout-ct, .borderCell
+ { background: #7f0013; }
+#headerText a /* must set link color to white for dark background when overriding
+other link colors in UI */
+ { color:#ffffff; }
+/****************************************************************
+ Page Titles,Subtitles; links in core pages
+****************************************************************/
+#bodyDivTitle h1, .bodyDivTitle h1
+ { color: #7f0013; }
+/* headers within pages (e.g. Extended Attributes on Define - Applications)*/
+.spContentTitle, .sectionHeader, .subSectionHeader
+ { color: #7f0013;}
+/* Object Type headers */
+.x-panel-header-text
+ { color: #7f0013 !important; }
+/* Tables with Blue banner header like in dashboard graph widgets */
+
+/* This shows example of overriding with a gradient background image
+ like used in core product but with a different color scheme.
+ Could specify a solid color with just the first two tags here. */
+.spBlueTable th {
+ background-image: none;
+ background-color: #7f0013;
+ background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%,
+#660013), color-stop(100%, #7f0013));
+ background-image: -webkit-linear-gradient(top, #660013, #7f0013);
+ background-image: -moz-linear-gradient(top, #660013, #7f0013);
+ background-image: -o-linear-gradient(top, #660013, #7f0013);
+ background-image: linear-gradient(top, #660013, #7f0013);
+}
+/********************************************************************
+ Links and text which look and behave similarly to links
+ (such as identity names in application Accounts list)
+********************************************************************/
+a, a:visited, a:active { color: #7f0013; }
+.fakeLink, .unboldFakeLink, .fakeLink .x-grid-cell-inner
+ { color: #7f0013; }
+/* Cert Wizard step names */
+.wizardStep:hover
+ { color: #7f0013 !important; }
+/*******************************************************************
+ Menus and sub-menus
+*******************************************************************/
+.menu #menuItems li.menuitemselected a
+ { color: #7f0013 !important; }
+.menu #menuItems li a:hover
+ { color: #660013 !important; }
+.main-submenu .x-menu-item-active a
+ { background-color: #7f0013 !important; }
+div.appPageExtTabs .x-tab-active /*Define Applications submenus */
+ { background-color: #7f0013 !important; }
+/* Menu options within Task, Cert, etc. pages */
+.x-tab-active button
+ { color: #7f0013 !important; }
+/* Colored buttons - use !important to override border, background-color, backgroundimage
+*/
+div.primaryBtn, input.primaryBtn , .primaryBtn
+ { background-image: none !important;
+background-color: #7f0013 !important;
+border-color: #7f0013 !important;
+}
+div.primaryBtn:hover, input.primaryBtn:hover
+ { background-image: none !important;
+ background-color: #660013 !important;
+border-color: #7f0013 !important;}
+/* Colored auxiliary buttons in some UI pages */
+.x-btn-default-small-noicon
+ { background-image: none;
+ background-color: #7f0013 !important; }
+/***********************************************************
+Buttons
+***********************************************************/
+/* Primary Buttons (most colored buttons with white text) */
+div.primaryBtn, input.primaryBtn , .primaryBtn
+ { background-image: none !important;
+background-color: #7f0013 !important;
+border-color: #7f0013 !important;
+}
+div.primaryBtn:hover, input.primaryBtn:hover
+ { background-image: none !important;
+background-color: #660013 !important;
+border-color: #7f0013 !important;}
+.primaryBtn .x-btn-center .x-btn-inner
+ { color: #ffffff !important; }
+/* New Task, New Certification drop-down list buttons */
+.menuBtnClass .x-btn-center .x-btn-inner
+ { color: #ffffff !important;}
+/* Secondary Buttons (gray/white with colored text) */
+div.secondaryBtn, input.secondaryBtn, button.secondaryBtn
+ { color: #7f0013; }
+div.secondaryBtn:hover, input.secondaryBtn:hover, button.secondaryBtn:hover
+ { color: #7f0013; }
+.x-btn-default-small
+ { color: #7f0013;}
+/* default toolbar buttons */
+.x-btn-default-toolbar-small-noicon, .x-btn-default-toolbar-medium-noicon,
+.x-btn-default-toolbar-small-noicon .x-btn-center .x-btn-inner,
+.x-btn-default-toolbar-medium-noicon .x-btn-center .x-btn-inner /* Dashboard widget
+Advanced Search buttons */
+ { color: #7f0013; }
+/* default toolbar button style hover override */
+.x-btn-default-toolbar-small-noicon.x-btn-default-toolbar-small-over,
+.x-btn-default-toolbar-medium-noicon.x-btn-default-toolbar-medium-over
+ { color: #7f0013; }
+/* Gray/white auxiliary buttons in some UI pages */
+.x-btn-default-small .x-btn-center .x-btn-inner
+ { color: #7f0013 !important; }
+/* Colored auxiliary buttons in some UI pages */
+.x-btn-default-small-noicon
+ { background-image: none;
+ background-color: #7f0013 !important; }
+.x-btn-default-small-noicon .x-btn-center .x-btn-inner
+ { color: #ffffff !important; }
+/* Enforce colored text on gray/white buttons after setting text color for colored
+auxiliary buttons */
+.x-btn-default .x-btn-center .x-btn-inner,
+.secondaryBtn .x-btn-center .x-btn-inner
+ { color: #7f0013 !important; 

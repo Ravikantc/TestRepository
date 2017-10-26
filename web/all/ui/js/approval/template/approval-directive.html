@@ -1,0 +1,183 @@
+<div class="approval panel animated" ng-class="{ lightSpeedOut: approval.completed }">
+  <sp-work-item-header sp-template-style="{{approvalCtrl.templateStyle}}" sp-on-click="approvalCtrl.toggleCollapsed()"
+          sp-is-collapsed="approvalCtrl.isCollapsed" tabindex="50">
+    <div class="row">
+      <div class="col-xs-10">
+        <label ng-show="approval.isHighPriority()"
+               class="high-priority-icon m-r-xs"
+               tooltip="{{ 'ui_my_approvals_high_priority' | spTranslate }}">
+          <i class="fa fa-flag" role="presentation" aria-hidden="true"></i>
+          <span class="sr-only" aria-hidden="{{!approval.isHighPriority()}}">
+            {{ 'ui_my_approvals_high_priority' | spTranslate }}
+          </span>
+        </label>
+        <span class="panel-title">
+          <b>{{ 'ui_identity' | spTranslate }}:</b> {{ ::approval.getRequesteeName() }}
+          <span class="text-muted" role="presentation">|</span>
+          <span class="text-info">
+            <b ng-show="approval.getTotalCount() === 1">{{ 'ui_my_approvals_request_count' | spTranslate:approval.getTotalCount()}}</b>
+            <b ng-show="approval.getTotalCount() > 1">{{ 'ui_my_approvals_requests_count' | spTranslate:approval.getTotalCount()}}</b>
+          </span>
+        </span>
+        <br/>
+        <span class="text-muted small">
+          <b>{{ 'ui_requested_on' | spTranslate }}:</b> {{ ::(approval.getCreated() | date:'medium') }}
+        </span>
+      </div>
+    </div>
+  </sp-work-item-header>
+
+  <!-- Approval content -->
+  <section collapse="approvalCtrl.isCollapsed" class="panel-body">
+    <div class="row" ng-repeat="violation in approval.violations">
+      <div class="col-xs-12">
+        <div class="alert alert-danger alert-stack"
+             ng-class="{first : $first, last: $last}">
+          <a href="" class="h5 text-danger" ng-click="approvalCtrl.showViolationDetails(violation)">
+            <i aria-hidden="true" class="fa fa-minus-circle" role="presentation"></i>
+            {{'ui_my_approvals_violation_found' | spTranslate:(violation.ruleName)}}
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="row m-b-sm">
+      <div class="col-xs-6">
+        <div class="btn-group">
+          <button id="btnActions{{::approvalCtrl.getUniquifier()}}" type="button"
+                  ng-disabled="!approval.isEditable()"
+                  ng-show="!approval.isCompleting()"
+                  class="btn btn-sm btn-white dropdown-toggle"
+                  data-toggle="dropdown" tabindex="50"
+                  role="button">
+            <span>
+              {{ 'ui_my_approvals_actions' | spTranslate }}
+              <span class="fa fa-chevron-down chevron" role="presentation"></span>
+            </span>
+          </button>
+          <ul class="dropdown-menu dropdown-menu-left" role="menu" aria-labelledby="actionsBtnLarge">
+            <li role="presentation">
+              <a href="" ng-click="approvalCtrl.approveAll()" role="menuitem" tabindex="50">
+                {{ 'ui_my_approvals_approve_all' | spTranslate }}
+              </a>
+            </li>
+            <li role="presentation">
+              <a href="" ng-click="approvalCtrl.rejectAll()" role="menuitem" tabindex="50">
+                {{ 'ui_my_approvals_deny_all' | spTranslate }}
+              </a>
+            </li>
+            <li role="presentation"
+              ng-show="false">
+              <a href="" ng-click="approvalCtrl.showForwardDialog()" role="menuitem" tabindex="50">
+                {{ 'ui_my_approvals_forward' | spTranslate }}
+              </a>
+            </li>
+            <li role="presentation"
+                ng-show="approvalCtrl.allowPriorityEditing()">
+              <a href="" ng-click="approvalCtrl.showEditPriorityDialog()" role="menuitem" tabindex="50">
+                {{ 'ui_my_approvals_change_priority' | spTranslate }}
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-xs-6">
+        <div class="pull-right">
+          <button id="btnWorkgroup{{::approvalCtrl.getUniquifier()}}"
+                  type="button"
+                  role="button"
+                  class="btn btn-sm btn-white visible-xs-inline"
+                  ng-show="!approval.isCompleting()"
+                  ng-click="approvalCtrl.showWorkgroupAssignmentDialog()"
+                  tabindex="50"
+                  ng-if="::approval.isOwnerWorkgroup()">
+            <i class="fa fa-users text-info" role="presentation"></i>
+            <span class="sr-only">{{ 'ui_my_approvals_change_workgroup_assignment' | spTranslate }}</span>
+          </button>
+
+          <button id="btnDetails{{::approvalCtrl.getUniquifier()}}"
+                  type="button"
+                  role="button"
+                  class="btn btn-sm btn-white"
+                  ng-show="!approval.isCompleting()"
+                  ng-click="approvalCtrl.showDetails()"
+                  tabindex="50">
+            <i class="fa fa-info-circle text-info" role="presentation"></i>
+            <span class="hidden-xs" aria-hidden="true"> {{ 'ui_my_approvals_approval_details' | spTranslate }}</span>
+            <span class="sr-only"> {{ 'ui_my_approvals_approval_details' | spTranslate }}</span>
+          </button>
+          <button id="btnComments{{::approvalCtrl.getUniquifier()}}" 
+                  type="button" class="btn btn-sm"
+                  ng-show="!approval.isCompleting()"
+                  ng-click="approvalCtrl.showApprovalComments()"
+                  ng-class="{'btn-success': approval.commentCount,
+                               'btn-white': !approval.commentCount}"
+
+                  tabindex="50"
+                  role="button">
+            <i class="fa fa-comment"
+               ng-class="{'text-info' : !approval.commentCount}"
+               role="presentation"></i>
+            <span class="sr-only">{{ 'ui_my_approvals_approval_comments' | spTranslate }}</span>
+            <span ng-show="approval.commentCount > 0" class="hidden-xs">
+              {{ approval.commentCount }}
+              <span class="sr-only">{{ 'ui_my_approvals_approval_after_count' | spTranslate }}</span>
+            </span>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="row m-b-sm hidden-xs">
+      <div class="col-xs-12">
+        <div class="well">
+          <span class="m-r">
+            <b>{{ 'ui_my_approvals_by' | spTranslate}}</b> {{ ::approval.getRequesterName() }}
+          </span>
+          <span class="hidden-xs" ng-show="approval.isOwnerWorkgroup()">
+            <b>{{ 'ui_my_approvals_assigned_to' | spTranslate }}</b>
+            <a id="linkWorkgroup{{::approvalCtrl.getUniquifier()}}"
+
+               ng-if="!approval.isCompleting()"
+               href="" ng-click="approvalCtrl.showWorkgroupAssignmentDialog()" class="text-info">
+              {{ approval.getAssigneeName() }}
+              <i class="fa fa-pencil" role="presentation"></i>
+              <span class="sr-only">
+                {{ 'ui_my_approvals_change_workgroup_assignment' | spTranslate }}
+              </span>
+            </a>
+          </span>
+          <a href="" class="btn-white btn btn-sm hidden-xs" ng-if="!approvalCtrl.isMobile()"
+             ng-if="!approval.isCompleting()"
+             ng-click="approvalCtrl.viewIdentityRequest()">
+            {{ 'ui_track_request' | spTranslate }}
+            <i class="fa fa-chevron-right m-l-xs" role="presentation"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Approval Item -->
+    <div class="row" ng-repeat="approvalItem in approval.approvalItems">
+      <div class="col-xs-12">
+        <article class="media overflow-visible approval-item" >
+          <sp-approval-item sp-approval="approval" sp-approval-item="approvalItem"
+                            sp-completion-callback="completionCallback"
+                            sp-index="$index"
+                            sp-parent-uniquifier={{::approvalCtrl.getUniquifier()}}/>
+        </article>
+      </div>
+    </div>
+
+    <footer>
+      <button id="btnComplete{{::approvalCtrl.getUniquifier()}}"
+              ng-show="approval.getRemainingCount() == 0 && !approval.isCompleting()"
+              ng-click="approvalCtrl.completePreDecided()"
+              class="btn btn-sm btn-info full-width-xs"
+              role="button"
+              type="button"
+              tabindex="50">
+        {{'ui_my_approvals_complete' | spTranslate}}
+      </button>
+    </footer>
+  </section>
+</div>
